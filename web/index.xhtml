@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <title>Lista 08</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="Bem-vindo à lista de contatos" />
+        <h:messages errorStyle="color: red" infoStyle="color: blue" layout="table" />
+        <h1>Listagem de Contatos</h1>
+        <h:form>
+            <h:outputText escape="false" value="(Sem contatos)<br />" rendered="#{lista.tamanho == 0}" />
+            <h:panelGroup rendered="#{lista.tamanho > 0}">
+                <p:dataTable value="#{lista.lista}" var="contato" style= "border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value=" #{contato.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="email" />
+                        </f:facet>
+                        <h:outputText value="#{contato.email}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Telefone" />
+                        </f:facet>
+                        <h:outputText value="#{contato.telefone}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText escape="false" value="&nbsp;"/>
+                        </f:facet>
+                    </h:column>
+                    <h:column>
+                        <h:commandLink value="#{lista.deleta(contato)}" />
+                    </h:column>
+            </p:dataTable>
+        </h:panelGroup>
+    </h:form>
+</h:body>
+</html>
+
